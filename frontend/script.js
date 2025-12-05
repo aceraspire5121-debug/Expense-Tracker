@@ -340,7 +340,7 @@ document.querySelector(".ExpenseCont").addEventListener("dblclick", async (e) =>
         const date = a.dataset.id;
         const index = kharcha.findIndex(b => b.date == date)
         const newText = prompt("Enter new text", kharcha[index].title)
-        if (newText != "") {
+      if (!newText || newText.trim() === "") return;
             const data = await fetch("/update", {
                 method: "PUT",
                 headers: { "Content-Type": "application/json", "Authorization": token },
@@ -356,7 +356,7 @@ document.querySelector(".ExpenseCont").addEventListener("dblclick", async (e) =>
             updateSummary();   // ✅ HERE
             updateCharts(); // ⬅ UPDATE CHART AFTER LOADING
             render()
-        }
+        
     } catch (err) {
         console.log(err)
     }
@@ -370,7 +370,7 @@ document.querySelector(".ExpenseCont").addEventListener("dblclick", async (e) =>
         const date = a.dataset.id;
         const index = kharcha.findIndex(b => b.date == date)
         const newText = prompt("Enter new text", kharcha[index].category)
-        if (newText != "") {
+        if (!newText || newText.trim() === "") return;
             const data = await fetch("/update2", {
                 method: "PUT",
                 headers: { "Content-Type": "application/json", "Authorization": token },
@@ -386,7 +386,7 @@ document.querySelector(".ExpenseCont").addEventListener("dblclick", async (e) =>
             updateSummary();   // ✅ HERE
             updateCharts(); // ⬅ UPDATE CHART AFTER LOADING
             render()
-        }
+        
     } catch (err) {
         console.log(err)
     }
@@ -400,7 +400,7 @@ document.querySelector(".ExpenseCont").addEventListener("dblclick", async (e) =>
         const date = a.dataset.id;
         const index = kharcha.findIndex(b => b.date == date)
         const newText = prompt("Enter new text", kharcha[index].amount)
-        if (newText != "") {
+        if (!newText || newText.trim() === "") return;
             const data = await fetch("/update3", {
                 method: "PUT",
                 headers: { "Content-Type": "application/json", "Authorization": token },
@@ -416,7 +416,7 @@ document.querySelector(".ExpenseCont").addEventListener("dblclick", async (e) =>
             updateSummary();   // ✅ HERE
             updateCharts(); // ⬅ UPDATE CHART AFTER LOADING
             render()
-        }
+        
     } catch (err) {
         console.log(err)
     }
@@ -430,7 +430,7 @@ document.querySelector(".ExpenseCont").addEventListener("dblclick", async (e) =>
         const date = a.dataset.id;
         const index = kharcha.findIndex(b => b.date == date)
         const newText = prompt("Enter new text", kharcha[index].time)
-        if (newText != "") {
+        if (!newText || newText.trim() === "") return;
             const data = await fetch("/update4", {
                 method: "PUT",
                 headers: { "Content-Type": "application/json", "Authorization": token },
@@ -446,7 +446,7 @@ document.querySelector(".ExpenseCont").addEventListener("dblclick", async (e) =>
             updateSummary();   // ✅ HERE
             updateCharts(); // ⬅ UPDATE CHART AFTER LOADING
             render()
-        }
+        
     } catch (err) {
         console.log(err)
     }
