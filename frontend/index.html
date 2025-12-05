@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en" class="w-full h-full"> <!--full means 100% -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+
+    <link rel="stylesheet" href="./output.css">
+    <style>
+        /* Webkit browsers (Chrome, Edge, Safari) */
+        .ExpenseCont::-webkit-scrollbar {
+            width: 6px;
+            /* Slim width */
+        }
+
+        .ExpenseCont::-webkit-scrollbar-track {
+            background: #1a1a1a;
+            /* Track color */
+            border-radius: 3px;
+        }
+
+        .ExpenseCont::-webkit-scrollbar-thumb {
+            background-color: #888;
+            /* Thumb color */
+            border-radius: 3px;
+            transition: background 0.3s;
+        }
+
+        .ExpenseCont::-webkit-scrollbar-thumb:hover {
+            background-color: #555;
+            /* Thumb hover color */
+        }
+
+        /* Firefox */
+        .ExpenseCont {
+            scrollbar-width: thin;
+            scrollbar-color: #888 #1a1a1a;
+        }
+
+        @media (max-width: 1280px) {
+            .first {
+                position: absolute;
+                left: -130%;
+                transition: left 0.3s ease;
+                z-index: 10;
+            }
+
+            .second {
+                width: 100%;
+                height: 100%;
+            }
+
+            .parent {
+                margin: 0;
+                padding: 0;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .close {
+                display: block;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .first {
+                width: 65%;
+            }
+
+            .Expensebox {
+                font-size: 11px;
+            }
+        }
+
+        @media (min-height: 1022px) and (max-height: 1370px) {
+            .first {
+                width: 40%;
+            }
+        }
+    </style>
+</head>
+
+<body class="h-full w-full">
+    <div class="parent w-full h-full p-2.5 flex gap-x-1.5 bg-black">
+        <div class="first w-[20%] flex flex-col bg-[#121212] h-full rounded-[10px]">
+            <div class="close hidden"> <span class="material-symbols-outlined absolute text-white top-5 right-3">
+                    close
+                </span></div>
+            <div class="user h-[40%] flex flex-col justify-center items-center gap-y-2.5">
+                <img class="w-20 h-20  rounded-full" src="images/logo.jpg" alt="">
+                <div class="username font-bold text-white">Sushant Yadav</div>
+            </div>
+            <div class="contain h-[50%] flex flex-col items-center gap-y-5 font-bold text-white">
+                <div class="home-show w-[70%] flex items-center gap-3 justify-center py-2 text-white cursor-pointer font-medium tracking-wide
+            hover:border hover:border-[#ffffff33] hover:bg-[#1a1a1a] hover:shadow-[0_0_10px_rgba(255,255,255,0.15)]
+            transition-all duration-300 rounded-lg select-none">
+                    <span class="material-symbols-outlined text-[20px]">home</span>
+                    Home
+                </div>
+
+                <div class="expense-show w-[70%] flex items-center gap-3 justify-center py-2 text-white cursor-pointer font-medium tracking-wide
+            hover:border hover:border-[#ffffff33] hover:bg-[#1a1a1a] hover:shadow-[0_0_10px_rgba(255,255,255,0.15)]
+            transition-all duration-300 rounded-lg select-none">
+                    <span class="material-symbols-outlined text-[20px]">receipt_long</span>
+                    Expense
+                </div>
+
+                <div class="travel w-[70%] flex items-center gap-3 justify-center py-2 text-white cursor-pointer font-medium tracking-wide
+            hover:border hover:border-[#ffffff33] hover:bg-[#1a1a1a] hover:shadow-[0_0_10px_rgba(255,255,255,0.15)]
+            transition-all duration-300 rounded-lg select-none">
+                    <span class="material-symbols-outlined text-[20px]">flight_takeoff</span>
+                    Travel
+                </div>
+
+                <div class="setting w-[70%] flex items-center gap-3 justify-center py-2 text-white cursor-pointer font-medium tracking-wide
+            hover:border hover:border-[#ffffff33] hover:bg-[#1a1a1a] hover:shadow-[0_0_10px_rgba(255,255,255,0.15)]
+            transition-all duration-300 rounded-lg select-none">
+                    <span class="material-symbols-outlined text-[20px]">settings</span>
+                    Setting
+                </div>
+
+
+            </div>
+            <footer class="flex justify-center">
+                <button class="logout flex items-center gap-2 text-white/70 text-sm tracking-wide py-2 px-4 rounded-lg cursor-pointer 
+               hover:border hover:border-red-500 hover:text-red-400 hover:bg-[#1a1a1a] 
+               hover:shadow-[0_0_10px_rgba(255,0,0,0.20)]
+               transition-all duration-300">
+                    <span class="material-symbols-outlined text-base">logout</span>
+                    Logout
+                </button>
+            </footer>
+        </div>
+        <div class="second w-[80%] bg-[#121212] h-full rounded-[10px] relative" style="overflow-y: auto;">
+            <div class="form hidden absolute h-[100%] w-[100%] flex justify-center items-center">
+                <div
+                    class="acform w-[50%] h-[50%] bg-[#1a1a1a] border border-white rounded-lg p-4 flex flex-col justify-center gap-4">
+
+                    <!-- Title Input -->
+                    <input id="titleInput" type="text" placeholder="Title"
+                        class="p-2 rounded bg-[#121212] text-white w-full" required />
+
+                    <!-- Category Input -->
+                    <input id="categoryInput" type="text" placeholder="Category"
+                        class="p-2 rounded bg-[#121212] text-white w-full" required />
+
+                    <!-- Date Input -->
+                    <input id="dateInput" type="date" class="p-2 rounded bg-[#121212] text-white w-full" required />
+
+
+                    <!-- Price Input -->
+                    <input id="priceInput" type="number" placeholder="Rupees"
+                        class="p-2 rounded bg-[#121212] text-white w-full" required />
+
+                    <!-- Buttons -->
+                    <div class="flex gap-2">
+                        <button id="submitExpense"
+                            class=" w-1/2 bg-green-600 hover:bg-green-500 text-white font-semibold py-2 rounded transition">
+                            Submit
+                        </button>
+                        <button id="cancelExpense"
+                            class="w-1/2 bg-red-600 hover:bg-red-500 text-white font-semibold py-2 rounded transition">
+                            Cancel
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div id="homePage" class="w-full h-full p-5 text-white overflow-y-auto
+bg-gradient-to-br from-[#0f0f0f] via-[#151515] to-[#0f0f0f]">
+
+                <!-- Header -->
+                <div class="h-[10%] flex gap-x-3 items-center mb-4">
+                    <div class="hamburger hidden flex items-center">
+                        <span class="material-symbols-outlined text-[26px]">menu</span>
+                    </div>
+                   <h1 class="text-2xl font-semibold tracking-wide">Your Expense Snapshot</h1>
+
+                </div>
+
+                <!-- Charts Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                    <!-- Pie Chart -->
+                   <div class="bg-[#141414]/80 backdrop-blur-md
+border border-[#2a2a2a] rounded-2xl p-4
+hover:shadow-[0_0_18px_rgba(99,102,241,0.15)]
+flex flex-col">
+
+    <!-- Title -->
+    <p class="text-sm text-gray-400 mb-3 text-center">
+        Category Split
+    </p>
+
+    <!-- Chart Wrapper -->
+    <div class="flex-1 flex items-center justify-center">
+        <div class="w-[280px] h-[280px]">
+            <canvas id="expensePieChart"></canvas>
+        </div>
+    </div>
+
+</div>
+
+
+                    <!-- Bar Chart -->
+                    <div class="bg-[#141414]/80 backdrop-blur-md
+        border border-[#2a2a2a] rounded-2xl p-4 h-[320px]
+        hover:shadow-[0_0_18px_rgba(99,102,241,0.15)]
+        transition">
+                        <p class="text-sm text-gray-400 mb-2">Category Comparison</p>
+                        <canvas id="expenseBarChart"></canvas>
+                    </div>
+
+                    <!-- Line Chart -->
+                    <div class="bg-[#141414]/80 backdrop-blur-md
+        border border-[#2a2a2a] rounded-2xl p-4 h-[320px]
+        md:col-span-2
+        hover:shadow-[0_0_18px_rgba(34,197,94,0.15)]
+        transition">
+                        <p class="text-sm text-gray-400 mb-2">Expense Trend</p>
+                        <canvas id="expenseLineChart"></canvas>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+            <div class="expensepage w-full h-full border hidden">
+                <nav class="text-white flex justify-between p-2">
+                    <div class="flex items-center gap-2">
+                        <div class="hamburger hidden"><span class="material-symbols-outlined text-white"
+                                style="font-size: 25px;">
+                                menu
+                            </span></div>
+                        <div class="text-2xl font-bold">Expenses</div>
+                    </div>
+                    <button class="addexpense flex items-center gap-2 px-4 py-2 rounded-lg text-white bg-[#2a2a2a] 
+           hover:bg-[#353535] hover:shadow-[0_0_10px_rgba(255,255,255,0.15)] 
+           transition-all duration-300 select-none">
+
+                        <span class="material-symbols-outlined text-[20px]">
+                            add
+                        </span>
+
+                        <span class="tracking-wide">New Expense</span>
+                    </button>
+
+                </nav>
+
+                <div class="flex flex-wrap items-center gap-x-6 gap-y-2
+bg-[#141414] border border-[#2a2a2a]
+rounded-xl px-4 py-2 mb-4 text-sm">
+
+    <span class="text-gray-400">
+        Total Spent:
+        <span class="ml-1 font-semibold text-green-400" id="totalAmount">₹ 0</span>
+    </span>
+
+    <span class="text-gray-400">
+        Expenses:
+        <span class="ml-1 font-semibold text-white" id="totalCount">0</span>
+    </span>
+
+    <span class="text-gray-400">
+        Top Category:
+        <span class="ml-1 font-medium text-indigo-300" id="topCategory">—</span>
+    </span>
+
+</div>
+
+
+
+                <div class="h-[80%] flex flex-col mt-14 border border-[#2a2a2a] bg-[#1a1a1a]">
+                    <div class="text-white px-3 py-2 font-bold border-b border-[#2a2a2a]"
+                        style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr;">
+
+                        <div>Title</div>
+                        <div class="text-center">Date</div>
+                        <div class="text-center">Category</div>
+                        <div class="text-center">Price</div>
+                        <!-- Delete Icon -->
+                        <div class="flex justify-end">
+                            <span>Bin</span>
+                        </div>
+
+                    </div>
+
+                    <div class="ExpenseCont h-[80%] overflow-y-auto">
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
