@@ -13,22 +13,22 @@ function formatDate(dateStr) {
 
 
 function updateSummary() {
-  if (!kharcha.length) return;
+    if (!kharcha.length) return;
 
- let total = 0;
+    let total = 0;
 
-for (let i = 0; i < kharcha.length; i++) {
-  total += Number(kharcha[i].amount);
-}
+    for (let i = 0; i < kharcha.length; i++) {
+        total += Number(kharcha[i].amount);
+    }
 
-  document.getElementById("totalAmount").innerText = `₹ ${total}`;
+    document.getElementById("totalAmount").innerText = `₹ ${total}`;
 
-  document.getElementById("totalCount").innerText = kharcha.length;
+    document.getElementById("totalCount").innerText = kharcha.length;
 
-  const map = {};
-  kharcha.forEach(i => map[i.category] = (map[i.category] || 0) + i.amount);
-  const top = Object.keys(map).sort((a,b)=>map[b]-map[a])[0]; // sabse badi category de dega 
-  document.getElementById("topCategory").innerText = top || "—";
+    const map = {};
+    kharcha.forEach(i => map[i.category] = (map[i.category] || 0) + i.amount);
+    const top = Object.keys(map).sort((a, b) => map[b] - map[a])[0]; // sabse badi category de dega 
+    document.getElementById("topCategory").innerText = top || "—";
 }
 
 
@@ -36,14 +36,14 @@ for (let i = 0; i < kharcha.length; i++) {
 let kharcha = [];
 let pieChart = null;
 let barChart = null;
-let lineChart = null; 
+let lineChart = null;
 
 
 function updateCharts() {
     if (!kharcha.length) return;
 
-    const pieCtx  = document.getElementById("expensePieChart");
-    const barCtx  = document.getElementById("expenseBarChart");
+    const pieCtx = document.getElementById("expensePieChart");
+    const barCtx = document.getElementById("expenseBarChart");
     const lineCtx = document.getElementById("expenseLineChart");
 
     // ---------- Group by CATEGORY ----------
@@ -85,25 +85,25 @@ function updateCharts() {
                 borderWidth: 0
             }]
         },
-       options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    cutout: "65%",
-    layout: {
-        padding: { top: 20, bottom: 25 }
-    },
-    plugins: {
-        legend: {
-            position: "bottom",
-            labels: {
-                padding: 18,   // ✅ main fix
-                boxWidth: 12,
-                font: { size: 11, weight: "500" },
-                color: "#e5e7eb"
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: "65%",
+            layout: {
+                padding: { top: 20, bottom: 25 }
+            },
+            plugins: {
+                legend: {
+                    position: "bottom",
+                    labels: {
+                        padding: 18,   // ✅ main fix
+                        boxWidth: 12,
+                        font: { size: 11, weight: "500" },
+                        color: "#e5e7eb"
+                    }
+                }
             }
         }
-    }
-}
 
     });
 
@@ -121,30 +121,30 @@ function updateCharts() {
         },
         options: {
             responsive: true,
-              maintainAspectRatio: false,
+            maintainAspectRatio: false,
             plugins: {
                 legend: { display: false }
             },
-           scales: {
-    x: {
-        ticks: {
-            padding: 10,
-            color: "#9ca3af",
-            font: { size: 11 }
-        }
-    },
-    y: {
-        beginAtZero: true,
-        ticks: {
-            padding: 10,
-            color: "#9ca3af",
-            font: { size: 11 }
-        },
-        grid: {
-            color: "rgba(255,255,255,0.05)"
-        }
-    }
-}
+            scales: {
+                x: {
+                    ticks: {
+                        padding: 10,
+                        color: "#9ca3af",
+                        font: { size: 11 }
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        padding: 10,
+                        color: "#9ca3af",
+                        font: { size: 11 }
+                    },
+                    grid: {
+                        color: "rgba(255,255,255,0.05)"
+                    }
+                }
+            }
 
         }
     });
@@ -166,30 +166,30 @@ function updateCharts() {
         },
         options: {
             responsive: true,
-              maintainAspectRatio: false,
+            maintainAspectRatio: false,
             plugins: {
                 legend: { labels: { color: "#d1d5db" } }
             },
             scales: {
-    x: {
-        ticks: {
-            padding: 10,
-            color: "#9ca3af",
-            font: { size: 11 }
-        }
-    },
-    y: {
-        beginAtZero: true,
-        ticks: {
-            padding: 10,
-            color: "#9ca3af",
-            font: { size: 11 }
-        },
-        grid: {
-            color: "rgba(255,255,255,0.05)"
-        }
-    }
-}
+                x: {
+                    ticks: {
+                        padding: 10,
+                        color: "#9ca3af",
+                        font: { size: 11 }
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        padding: 10,
+                        color: "#9ca3af",
+                        font: { size: 11 }
+                    },
+                    grid: {
+                        color: "rgba(255,255,255,0.05)"
+                    }
+                }
+            }
 
         }
     });
@@ -217,8 +217,8 @@ async function loadtasks() {
 
         const newdata = await data.json()
         kharcha = newdata //newdata will be array of objects
-            updateSummary();   // ✅ HERE
-         updateCharts(); // ⬅ UPDATE CHART AFTER LOADING
+        updateSummary();   // ✅ HERE
+        updateCharts(); // ⬅ UPDATE CHART AFTER LOADING
         render()
     } catch (err) {
         console.log(err)
@@ -239,9 +239,14 @@ function render() {
 
                         <!-- Delete Icon -->
                         <div class="flex justify-end">
-                            <span class="material-symbols-outlined cursor-pointer hover:text-red-400 transition delete-btn">
-                                delete
-                            </span>
+                            <span class="material-symbols-outlined cursor-pointer delete-btn
+hover:text-red-400
+active:text-red-400 active:scale-[0.9]
+focus:text-red-400
+transition-all duration-200">
+    delete
+</span>
+
                         </div>
 
                     </div>`
@@ -253,14 +258,14 @@ function render() {
     document.querySelector(".form").classList.add("hidden");
 }
 
-document.querySelectorAll(".hamburger").forEach((item)=>{
-console.log("hii")
-item.addEventListener("click",()=>{
-    document.querySelector(".first").style.left = "0%"
-    document.querySelector(".first").style.backgroundColor = "#222222"
+document.querySelectorAll(".hamburger").forEach((item) => {
+    console.log("hii")
+    item.addEventListener("click", () => {
+        document.querySelector(".first").style.left = "0%"
+        document.querySelector(".first").style.backgroundColor = "#222222"
+    })
 })
-})
-    
+
 
 document.querySelector(".close").addEventListener("click", () => {
     document.querySelector(".first").style.left = "-130%"
@@ -276,8 +281,8 @@ document.getElementById("submitExpense").addEventListener("click", async () => {
     const title = document.getElementById("titleInput").value
     const category = document.getElementById("categoryInput").value
     const amount = document.getElementById("priceInput").value
-   const rawDate = document.getElementById("dateInput").value;
-const samay = formatDate(rawDate); // DD-MM-YYYY
+    const rawDate = document.getElementById("dateInput").value;
+    const samay = formatDate(rawDate); // DD-MM-YYYY
     console.log(samay)
     if (title === "" || category === "" || amount === "" || samay === "") {
         alert("Please fill all entries to submit");
@@ -288,8 +293,8 @@ const samay = formatDate(rawDate); // DD-MM-YYYY
     const newdata = await data.json()
     if (newdata.success) {
         kharcha.push(newdata.expense)
-            updateSummary();   // ✅ HERE
-         updateCharts(); // ⬅ UPDATE CHART AFTER LOADING
+        updateSummary();   // ✅ HERE
+        updateCharts(); // ⬅ UPDATE CHART AFTER LOADING
         render()
     }
     else {
@@ -318,8 +323,8 @@ document.querySelector(".ExpenseCont").addEventListener("click", async (e) => {
         }
         const newdata = await res.json()
         kharcha = newdata;
-            updateSummary();   // ✅ HERE
-         updateCharts(); // ⬅ UPDATE CHART AFTER LOADING
+        updateSummary();   // ✅ HERE
+        updateCharts(); // ⬅ UPDATE CHART AFTER LOADING
         render()
     } catch (err) {
         console.log(err)
@@ -348,8 +353,8 @@ document.querySelector(".ExpenseCont").addEventListener("dblclick", async (e) =>
             }
             const newdata = await data.json();
             kharcha[index] = newdata;
-                updateSummary();   // ✅ HERE
-             updateCharts(); // ⬅ UPDATE CHART AFTER LOADING
+            updateSummary();   // ✅ HERE
+            updateCharts(); // ⬅ UPDATE CHART AFTER LOADING
             render()
         }
     } catch (err) {
@@ -378,8 +383,8 @@ document.querySelector(".ExpenseCont").addEventListener("dblclick", async (e) =>
             }
             const newdata = await data.json();
             kharcha[index] = newdata;
-                updateSummary();   // ✅ HERE
-             updateCharts(); // ⬅ UPDATE CHART AFTER LOADING
+            updateSummary();   // ✅ HERE
+            updateCharts(); // ⬅ UPDATE CHART AFTER LOADING
             render()
         }
     } catch (err) {
@@ -408,8 +413,8 @@ document.querySelector(".ExpenseCont").addEventListener("dblclick", async (e) =>
             }
             const newdata = await data.json();
             kharcha[index] = newdata;
-                updateSummary();   // ✅ HERE
-             updateCharts(); // ⬅ UPDATE CHART AFTER LOADING
+            updateSummary();   // ✅ HERE
+            updateCharts(); // ⬅ UPDATE CHART AFTER LOADING
             render()
         }
     } catch (err) {
@@ -438,8 +443,8 @@ document.querySelector(".ExpenseCont").addEventListener("dblclick", async (e) =>
             }
             const newdata = await data.json();
             kharcha[index] = newdata;
-                updateSummary();   // ✅ HERE
-             updateCharts(); // ⬅ UPDATE CHART AFTER LOADING
+            updateSummary();   // ✅ HERE
+            updateCharts(); // ⬅ UPDATE CHART AFTER LOADING
             render()
         }
     } catch (err) {
@@ -447,19 +452,19 @@ document.querySelector(".ExpenseCont").addEventListener("dblclick", async (e) =>
     }
 })
 
-document.querySelector(".expense-show").addEventListener("click",()=>{
+document.querySelector(".expense-show").addEventListener("click", () => {
     document.querySelector(".expensepage").classList.remove("hidden")
     document.getElementById("homePage").classList.add("hidden")
 })
-document.querySelector(".home-show").addEventListener("click",()=>{
+document.querySelector(".home-show").addEventListener("click", () => {
     document.querySelector(".expensepage").classList.add("hidden")
     document.getElementById("homePage").classList.remove("hidden")
 })
 
-document.querySelector(".travel").addEventListener("click",()=>{
+document.querySelector(".travel").addEventListener("click", () => {
     alert("🚧 This feature is under development and will be available soon.");
 })
-document.querySelector(".setting").addEventListener("click",()=>{
+document.querySelector(".setting").addEventListener("click", () => {
     alert("🚧 This feature is under development and will be available soon.");
 })
 

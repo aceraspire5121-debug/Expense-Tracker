@@ -98,27 +98,31 @@
             </div>
             <div class="contain h-[50%] flex flex-col items-center gap-y-5 font-bold text-white">
                 <div class="home-show w-[70%] flex items-center gap-3 justify-center py-2 text-white cursor-pointer font-medium tracking-wide
-            hover:border hover:border-[#ffffff33] hover:bg-[#1a1a1a] hover:shadow-[0_0_10px_rgba(255,255,255,0.15)]
+            hover:border hover:border-[#ffffff33] hover:bg-[#1a1a1a] hover:shadow-[0_0_10px_rgba(255,255,255,0.15)] active:border-[#ffffff33] active:bg-[#1a1a1a] active:scale-[0.97]
+focus:border-[#ffffff33] focus:bg-[#1a1a1a] border border-transparent
             transition-all duration-300 rounded-lg select-none">
                     <span class="material-symbols-outlined text-[20px]">home</span>
                     Home
                 </div>
 
-                <div class="expense-show w-[70%] flex items-center gap-3 justify-center py-2 text-white cursor-pointer font-medium tracking-wide
+                <div class="expense-show w-[70%] flex items-center gap-3 justify-center py-2 text-white cursor-pointer font-medium tracking-wide active:border-[#ffffff33] active:bg-[#1a1a1a] active:scale-[0.97]
+focus:border-[#ffffff33] focus:bg-[#1a1a1a] border border-transparent
             hover:border hover:border-[#ffffff33] hover:bg-[#1a1a1a] hover:shadow-[0_0_10px_rgba(255,255,255,0.15)]
             transition-all duration-300 rounded-lg select-none">
                     <span class="material-symbols-outlined text-[20px]">receipt_long</span>
                     Expense
                 </div>
 
-                <div class="travel w-[70%] flex items-center gap-3 justify-center py-2 text-white cursor-pointer font-medium tracking-wide
+                <div class="travel w-[70%] flex items-center gap-3 justify-center py-2 text-white cursor-pointer font-medium tracking-wide active:border-[#ffffff33] active:bg-[#1a1a1a] active:scale-[0.97]
+focus:border-[#ffffff33] focus:bg-[#1a1a1a] border border-transparent
             hover:border hover:border-[#ffffff33] hover:bg-[#1a1a1a] hover:shadow-[0_0_10px_rgba(255,255,255,0.15)]
             transition-all duration-300 rounded-lg select-none">
                     <span class="material-symbols-outlined text-[20px]">flight_takeoff</span>
                     Travel
                 </div>
 
-                <div class="setting w-[70%] flex items-center gap-3 justify-center py-2 text-white cursor-pointer font-medium tracking-wide
+                <div class="setting w-[70%] flex items-center gap-3 justify-center py-2 text-white cursor-pointer font-medium tracking-wide active:border-[#ffffff33] active:bg-[#1a1a1a] active:scale-[0.97]
+focus:border-[#ffffff33] focus:bg-[#1a1a1a] border border-transparent
             hover:border hover:border-[#ffffff33] hover:bg-[#1a1a1a] hover:shadow-[0_0_10px_rgba(255,255,255,0.15)]
             transition-all duration-300 rounded-lg select-none">
                     <span class="material-symbols-outlined text-[20px]">settings</span>
@@ -128,13 +132,22 @@
 
             </div>
             <footer class="flex justify-center">
-                <button class="logout flex items-center gap-2 text-white/70 text-sm tracking-wide py-2 px-4 rounded-lg cursor-pointer 
-               hover:border hover:border-red-500 hover:text-red-400 hover:bg-[#1a1a1a] 
-               hover:shadow-[0_0_10px_rgba(255,0,0,0.20)]
-               transition-all duration-300">
-                    <span class="material-symbols-outlined text-base">logout</span>
-                    Logout
-                </button>
+               <button class="logout flex items-center gap-2
+text-white/70 text-sm tracking-wide
+py-2 px-4 rounded-lg cursor-pointer
+border border-transparent
+
+hover:border hover:border-red-500 hover:text-red-400 hover:bg-[#1a1a1a]
+hover:shadow-[0_0_10px_rgba(255,0,0,0.20)]
+
+active:border-red-500 active:text-red-400 active:bg-[#1a1a1a] active:scale-[0.97]
+focus:border-red-500 focus:text-red-400 focus:bg-[#1a1a1a]
+
+transition-all duration-300 select-none">
+    <span class="material-symbols-outlined text-base">logout</span>
+    Logout
+</button>
+
             </footer>
         </div>
         <div class="second w-[80%] bg-[#121212] h-full rounded-[10px] relative" style="overflow-y: auto;">
@@ -177,60 +190,66 @@
             <div id="homePage" class="w-full h-full p-5 text-white overflow-y-auto
 bg-gradient-to-br from-[#0f0f0f] via-[#151515] to-[#0f0f0f]">
 
-                <!-- Header -->
-                <div class="h-[10%] flex gap-x-3 items-center mb-4">
-                    <div class="hamburger hidden flex items-center">
-                        <span class="material-symbols-outlined text-[26px]">menu</span>
-                    </div>
-                   <h1 class="text-2xl font-semibold tracking-wide">Your Expense Snapshot</h1>
-
-                </div>
-
-                <!-- Charts Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-                    <!-- Pie Chart -->
-                   <div class="bg-[#141414]/80 backdrop-blur-md
-border border-[#2a2a2a] rounded-2xl p-4
-hover:shadow-[0_0_18px_rgba(99,102,241,0.15)]
-flex flex-col">
-
-    <!-- Title -->
-    <p class="text-sm text-gray-400 mb-3 text-center">
-        Category Split
-    </p>
-
-    <!-- Chart Wrapper -->
-    <div class="flex-1 flex items-center justify-center">
-        <div class="w-[280px] h-[280px]">
-            <canvas id="expensePieChart"></canvas>
+    <!-- Header -->
+    <div class="h-[10%] flex gap-x-3 items-center mb-4">
+        <div class="hamburger hidden flex items-center">
+            <span class="material-symbols-outlined text-[26px]">menu</span>
         </div>
+        <h1 class="text-2xl font-semibold tracking-wide">Your Expense Snapshot</h1>
     </div>
 
-</div>
+    <!-- Charts Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
+        <!-- Pie Chart -->
+        <div class="bg-[#141414]/80 backdrop-blur-md
+border border-[#2a2a2a] rounded-2xl p-4
+hover:shadow-[0_0_18px_rgba(99,102,241,0.15)]
+active:shadow-[0_0_18px_rgba(99,102,241,0.15)]
+focus:shadow-[0_0_18px_rgba(99,102,241,0.15)]
+transition-all duration-300
+flex flex-col">
 
-                    <!-- Bar Chart -->
-                    <div class="bg-[#141414]/80 backdrop-blur-md
-        border border-[#2a2a2a] rounded-2xl p-4 h-[320px]
-        hover:shadow-[0_0_18px_rgba(99,102,241,0.15)]
-        transition">
-                        <p class="text-sm text-gray-400 mb-2">Category Comparison</p>
-                        <canvas id="expenseBarChart"></canvas>
-                    </div>
+            <p class="text-sm text-gray-400 mb-3 text-center">
+                Category Split
+            </p>
 
-                    <!-- Line Chart -->
-                    <div class="bg-[#141414]/80 backdrop-blur-md
-        border border-[#2a2a2a] rounded-2xl p-4 h-[320px]
-        md:col-span-2
-        hover:shadow-[0_0_18px_rgba(34,197,94,0.15)]
-        transition">
-                        <p class="text-sm text-gray-400 mb-2">Expense Trend</p>
-                        <canvas id="expenseLineChart"></canvas>
-                    </div>
-
+            <div class="flex-1 flex items-center justify-center">
+                <div class="w-[280px] h-[280px]">
+                    <canvas id="expensePieChart"></canvas>
                 </div>
             </div>
+
+        </div>
+
+        <!-- Bar Chart -->
+        <div class="bg-[#141414]/80 backdrop-blur-md
+border border-[#2a2a2a] rounded-2xl p-4 h-[320px]
+hover:shadow-[0_0_18px_rgba(99,102,241,0.15)]
+active:shadow-[0_0_18px_rgba(99,102,241,0.15)]
+focus:shadow-[0_0_18px_rgba(99,102,241,0.15)]
+transition-all duration-300">
+
+            <p class="text-sm text-gray-400 mb-2">Category Comparison</p>
+            <canvas id="expenseBarChart"></canvas>
+        </div>
+
+        <!-- Line Chart -->
+        <div class="bg-[#141414]/80 backdrop-blur-md
+border border-[#2a2a2a] rounded-2xl p-4 h-[320px]
+md:col-span-2
+hover:shadow-[0_0_18px_rgba(34,197,94,0.15)]
+active:shadow-[0_0_18px_rgba(34,197,94,0.15)]
+focus:shadow-[0_0_18px_rgba(34,197,94,0.15)]
+transition-all duration-300">
+
+            <p class="text-sm text-gray-400 mb-2">Expense Trend</p>
+            <canvas id="expenseLineChart"></canvas>
+        </div>
+
+    </div>
+</div>
+
 
 
 
@@ -260,22 +279,22 @@ flex flex-col">
 bg-[#141414] border border-[#2a2a2a]
 rounded-xl px-4 py-2 mb-4 text-sm">
 
-    <span class="text-gray-400">
-        Total Spent:
-        <span class="ml-1 font-semibold text-green-400" id="totalAmount">₹ 0</span>
-    </span>
+                    <span class="text-gray-400">
+                        Total Spent:
+                        <span class="ml-1 font-semibold text-green-400" id="totalAmount">₹ 0</span>
+                    </span>
 
-    <span class="text-gray-400">
-        Expenses:
-        <span class="ml-1 font-semibold text-white" id="totalCount">0</span>
-    </span>
+                    <span class="text-gray-400">
+                        Expenses:
+                        <span class="ml-1 font-semibold text-white" id="totalCount">0</span>
+                    </span>
 
-    <span class="text-gray-400">
-        Top Category:
-        <span class="ml-1 font-medium text-indigo-300" id="topCategory">—</span>
-    </span>
+                    <span class="text-gray-400">
+                        Top Category:
+                        <span class="ml-1 font-medium text-indigo-300" id="topCategory">—</span>
+                    </span>
 
-</div>
+                </div>
 
 
 
