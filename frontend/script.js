@@ -454,10 +454,12 @@ document.querySelector(".ExpenseCont").addEventListener("dblclick", async (e) =>
 
 document.querySelector(".expense-show").addEventListener("click", () => {
     document.querySelector(".expensepage").classList.remove("hidden")
+     document.querySelector(".first").style.left = "-130%"
     document.getElementById("homePage").classList.add("hidden")
 })
 document.querySelector(".home-show").addEventListener("click", () => {
     document.querySelector(".expensepage").classList.add("hidden")
+     document.querySelector(".first").style.left = "-130%"
     document.getElementById("homePage").classList.remove("hidden")
 })
 
