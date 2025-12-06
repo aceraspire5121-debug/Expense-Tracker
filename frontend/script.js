@@ -259,13 +259,19 @@ transition-all duration-200">
 }
 
 document.querySelectorAll(".hamburger").forEach((item) => {
-    console.log("hii")
-    item.addEventListener("click", () => {
+    item.addEventListener("click", (e) => {
+        e.stopPropagation(); // kyoki agla event listener second par laga hai mtlb hamburger par click to ispr chala par hamburger par click karne ka mtln uske parent second par click to event fir baha transfer ho jayega isliye stop propagation lagaya ki agar hamburger par click kia hai to iska event yahi ruk jaye bo , buuble hokar iske parent second par propagate nhi kare
         document.querySelector(".first").style.left = "0%"
         document.querySelector(".first").style.backgroundColor = "#222222"
     })
 })
-
+document.querySelector(".second").addEventListener("click",()=>{
+ const a=document.querySelector(".first")
+ if(a.style.left=="0%")
+ {
+    document.querySelector(".first").style.left="-130%"
+ }
+})
 
 document.querySelector(".close").addEventListener("click", () => {
     document.querySelector(".first").style.left = "-130%"
