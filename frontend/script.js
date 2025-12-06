@@ -282,14 +282,19 @@ document.getElementById("submitExpense").addEventListener("click", async () => {
     const category = document.getElementById("categoryInput").value
     const amount = document.getElementById("priceInput").value
     const rawDate = document.getElementById("dateInput").value;
-    const samay = formatDate(rawDate); // DD-MM-YYYY
+    // const samay = formatDate(rawDate); // DD-MM-YYYY
+    const samay=rawDate?formatDate(rawDate):undefined;
     console.log(samay)
-    if (title === "" || category === "" || amount === "" || samay === "") {
+    if (title === "" || category === "" || amount === "") {
         alert("Please fill all entries to submit");
         return;
     }
+   const payload={title,category,amount,date:Date.now()}
+   if(samay){
+    payload.time=samay;
+   }
     const token = localStorage.getItem("token2")
-    const data = await fetch("/create", { method: "POST", headers: { "Content-Type": "application/json", "Authorization": token }, body: JSON.stringify({ title, category, amount, time: samay, date: Date.now() }) })
+    const data = await fetch("/create", { method: "POST", headers: { "Content-Type": "application/json", "Authorization": token }, body: JSON.stringify(payload) })
     const newdata = await data.json()
     if (newdata.success) {
         kharcha.push(newdata.expense)
