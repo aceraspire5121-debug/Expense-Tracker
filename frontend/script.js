@@ -259,7 +259,7 @@ transition-all duration-200">
 }
 
 document.querySelector(".querysearch").addEventListener("input",(e)=>{
-    const find=e.target.value // e.target gives input tag
+    const find=e.target.value.trim().toLowerCase() // e.target gives input tag
     console.log(find)
     console.log(kharcha)
      const filteredkharcha = kharcha.filter(item =>
