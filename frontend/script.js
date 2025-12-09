@@ -259,7 +259,7 @@ transition-all duration-200">
 }
 
 document.querySelector(".querysearch").addEventListener("input",(e)=>{
-    const find=e.target.value.trim().toLowerCase() // e.target gives input tag
+    const find=e.target.value.trim().toLowerCase() // e.target gives input tag, html input tag values are always strings so nnumber aslso becomes string "4000" hence we can apply tolowercase then
     console.log(find)
     console.log(kharcha)
      const filteredkharcha = kharcha.filter(item =>
