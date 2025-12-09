@@ -219,15 +219,15 @@ async function loadtasks() {
         kharcha = newdata //newdata will be array of objects
         updateSummary();   // ✅ HERE
         updateCharts(); // ⬅ UPDATE CHART AFTER LOADING
-        render()
+        render(kharcha)
     } catch (err) {
         console.log(err)
     }
 }
 
-function render() {
+function render(arr) {
     document.querySelector(".ExpenseCont").innerHTML = ""
-    kharcha.forEach((a) => {
+    arr.forEach((a) => {
 
         document.querySelector(".ExpenseCont").innerHTML += `<div
                         class="Expensebox text-white px-3 py-2 border rounded-xl m-2.5 border-[#2a2a2a]" data-id=${a.date} style=" display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr; align-content:center;height: 14%;">
@@ -257,6 +257,21 @@ transition-all duration-200">
     document.getElementById("dateInput").value = ""
     document.querySelector(".form").classList.add("hidden");
 }
+
+document.querySelector(".querysearch").addEventListener("input",(e)=>{
+    const find=e.target.value // e.target gives input tag
+    console.log(find)
+    console.log(kharcha)
+     const filteredkharcha = kharcha.filter(item =>
+    item.title.toLowerCase().includes(find) ||
+    item.category.toLowerCase().includes(find) ||
+    item.amount.toString().includes(find) //since our amount is a number in schema but includes is a string function so we have to convert it into string before finding
+  );
+
+    render(filteredkharcha)
+ // when user empties everything in searchbox then due to change event find="" and we know that every string either food, travel,goa and bla bla contains an empty string so foreach loop runs and if condition gets true for all the categories and hence all items are shown on clearing the search
+})
+
 
 document.querySelectorAll(".hamburger").forEach((item) => {
     item.addEventListener("click", (e) => {
@@ -306,7 +321,7 @@ document.getElementById("submitExpense").addEventListener("click", async () => {
         kharcha.push(newdata.expense)
         updateSummary();   // ✅ HERE
         updateCharts(); // ⬅ UPDATE CHART AFTER LOADING
-        render()
+        render(kharcha)
     }
     else {
         alert(newdata.message)
@@ -336,7 +351,7 @@ document.querySelector(".ExpenseCont").addEventListener("click", async (e) => {
         kharcha = newdata;
         updateSummary();   // ✅ HERE
         updateCharts(); // ⬅ UPDATE CHART AFTER LOADING
-        render()
+        render(kharcha)
     } catch (err) {
         console.log(err)
     }
@@ -366,7 +381,7 @@ document.querySelector(".ExpenseCont").addEventListener("dblclick", async (e) =>
             kharcha[index] = newdata;
             updateSummary();   // ✅ HERE
             updateCharts(); // ⬅ UPDATE CHART AFTER LOADING
-            render()
+            render(kharcha)
         
     } catch (err) {
         console.log(err)
@@ -396,7 +411,7 @@ document.querySelector(".ExpenseCont").addEventListener("dblclick", async (e) =>
             kharcha[index] = newdata;
             updateSummary();   // ✅ HERE
             updateCharts(); // ⬅ UPDATE CHART AFTER LOADING
-            render()
+            render(kharcha)
         
     } catch (err) {
         console.log(err)
@@ -426,7 +441,7 @@ document.querySelector(".ExpenseCont").addEventListener("dblclick", async (e) =>
             kharcha[index] = newdata;
             updateSummary();   // ✅ HERE
             updateCharts(); // ⬅ UPDATE CHART AFTER LOADING
-            render()
+            render(kharcha)
         
     } catch (err) {
         console.log(err)
@@ -456,7 +471,7 @@ document.querySelector(".ExpenseCont").addEventListener("dblclick", async (e) =>
             kharcha[index] = newdata;
             updateSummary();   // ✅ HERE
             updateCharts(); // ⬅ UPDATE CHART AFTER LOADING
-            render()
+            render(kharcha)
         
     } catch (err) {
         console.log(err)
